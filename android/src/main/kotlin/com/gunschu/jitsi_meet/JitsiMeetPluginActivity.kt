@@ -6,10 +6,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
+import android.util.Rational
+import android.app.PictureInPictureParams
+import android.app.PictureInPictureParams.Builder
+import android.view.Gravity
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
+import android.widget.LinearLayout
+import android.widget.LinearLayout.LayoutParams
 import com.gunschu.jitsi_meet.JitsiMeetPlugin.Companion.JITSI_MEETING_CLOSE
 import com.gunschu.jitsi_meet.JitsiMeetPlugin.Companion.JITSI_PLUGIN_TAG
 import org.jitsi.meet.sdk.JitsiMeetActivity
@@ -29,7 +35,7 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
             }
             context?.startActivity(intent)
         }
-    }
+    }    
 
     var onStopCalled: Boolean = false;
 
@@ -91,8 +97,40 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         turnScreenOnAndKeyguardOff();
+        enterPictureInPictureMode(
+                Builder()
+                        .setAspectRatio(Rational(16, 16))
+                        .build()
+        )
         JitsiMeetEventStreamHandler.instance.onPictureInPictureWillEnter()
-        enterPictureInPictureMode()
+        val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            weight = 1.0f
+            gravity = Gravity.TOP
+        }
+        window.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
+    }
+
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        enterPictureInPictureMode(
+                Builder()
+                        .setAspectRatio(Rational(16, 16))
+                        .build()
+        )
+        window.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
+    }
+
+    override fun onBackPressed() {
+//        onUserLeaveHint()
+        enterPictureInPictureMode(
+                Builder()
+                        .setAspectRatio(Rational(16, 16))
+                        .build()
+        )
+        window.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL)
     }
 
     override fun onDestroy() {

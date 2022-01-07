@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'room_name_constraint.dart';
 import 'room_name_constraint_type.dart';
@@ -18,6 +19,7 @@ export 'package:jitsi_meet_platform_interface/jitsi_meet_platform_interface.dart
 
 class JitsiMeet {
   static bool _hasInitialized = false;
+  static const MethodChannel _channel = MethodChannel('jitsi_meet');
 
   static final Map<RoomNameConstraintType, RoomNameConstraint>
       defaultRoomNameConstraints = {
@@ -73,7 +75,7 @@ class JitsiMeet {
   }
 
   static closeMeeting() => JitsiMeetPlatform.instance.closeMeeting();
-  static deleteMeeting() => JitsiMeetPlatform.instance.closeMeeting();
+  static deleteMeeting() => _channel.invokeMethod('toggleShareScreen');
 
   /// Adds a JitsiMeetingListener that will broadcast conference events
   static addListener(JitsiMeetingListener jitsiMeetingListener) {
