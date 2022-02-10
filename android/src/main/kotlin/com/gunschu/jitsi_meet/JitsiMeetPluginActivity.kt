@@ -45,6 +45,9 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
         if (isInPictureInPictureMode){
             JitsiMeetEventStreamHandler.instance.onPictureInPictureWillEnter()
             print("pip mode inside");
+            if(onStopCalled){
+                print("jitsiiii disconnected");
+            }
         }
         else {
             JitsiMeetEventStreamHandler.instance.onPictureInPictureTerminated()
