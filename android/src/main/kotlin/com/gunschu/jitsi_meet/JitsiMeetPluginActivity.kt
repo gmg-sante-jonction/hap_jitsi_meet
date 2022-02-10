@@ -44,18 +44,18 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
         
         if (isInPictureInPictureMode){
             JitsiMeetEventStreamHandler.instance.onPictureInPictureWillEnter()
-            print('pip mode inside');
+            print("pip mode inside");
         }
         else {
             JitsiMeetEventStreamHandler.instance.onPictureInPictureTerminated()
-            print('pip mode outside');
+            print("pip mode outside");
         }
 
         if (isInPictureInPictureMode == false && onStopCalled) {
             // Picture-in-Picture mode has been closed, we can (should !) end the call
             getJitsiView().leave()
 //            JitsiMeetEventStreamHandler.instance.onConferenceTerminated()
-            print('jitsiiii closedddd');
+            print("jitsiiii closedddd");
         }
     }
 
