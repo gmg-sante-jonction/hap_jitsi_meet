@@ -44,14 +44,21 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
         
         if (isInPictureInPictureMode){
             JitsiMeetEventStreamHandler.instance.onPictureInPictureWillEnter()
+            print("pip mode inside");
+            if(onStopCalled){
+                print("jitsiiii disconnected");
+            }
         }
         else {
             JitsiMeetEventStreamHandler.instance.onPictureInPictureTerminated()
+            print("pip mode outside");
         }
 
         if (isInPictureInPictureMode == false && onStopCalled) {
             // Picture-in-Picture mode has been closed, we can (should !) end the call
             getJitsiView().leave()
+//            JitsiMeetEventStreamHandler.instance.onConferenceTerminated()
+            print("jitsiiii closedddd");
         }
     }
 
@@ -88,7 +95,6 @@ class JitsiMeetPluginActivity : JitsiMeetActivity() {
     }
 
     override fun onConferenceTerminated(data: HashMap<String, Any>) {
-
         Log.d(JITSI_PLUGIN_TAG, String.format("JitsiMeetPluginActivity.onConferenceTerminated: %s", data))
         JitsiMeetEventStreamHandler.instance.onConferenceTerminated(data)
         super.onConferenceTerminated(data)
