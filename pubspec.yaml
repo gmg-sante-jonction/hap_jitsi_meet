@@ -1,7 +1,7 @@
 name: jitsi_meet
 description: Jitsi Meet Plugin - A plugin for integrating open source Jitsi Meet API in flutter. Jitsi Meet is secure, fully featured and allows completely free video conferencing made with https://jitsi.org, a collection of open source projects
 version: 4.0.0
-homepage: https://github.com/vtsindia-dev/hap_jitsi_meet
+homepage: https://github.com/gmg-sante-jonction/hap_jitsi_meet
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
@@ -14,10 +14,10 @@ dependencies:
   # jitsi_meet_web_plugin: ^2.0.0
   jitsi_meet_platform_interface:
     git:
-      url: https://github.com/vtsindia-dev/hap_jitsi_meet_platform_interface.git
+      url: https://github.com/gmg-sante-jonction/hap_jitsi_meet_platform_interface.git
   jitsi_meet_web_plugin:
     git:
-      url: https://github.com/vtsindia-dev/hap_jitsi_meet_web_plugin.git
+      url: https://github.com/gmg-sante-jonction/hap_jitsi_meet_web_plugin.git
 
 dev_dependencies:
   flutter_test:
