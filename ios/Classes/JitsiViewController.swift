@@ -1,3 +1,9 @@
+import UIKit
+import JitsiMeetSDK
+
+class JitsiViewController: UIViewController {
+
+
 @IBOutlet weak var videoButton: UIButton?
 
 //CHEAT
