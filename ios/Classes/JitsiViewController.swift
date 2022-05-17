@@ -42,7 +42,7 @@ override func loadView() {
 override func viewDidLoad() {
     
     //print("VIEW DID LOAD")
-    self.view.backgroundColor = .black
+    // self.view.backgroundColor = .black
     
     super.viewDidLoad()
 }
@@ -103,7 +103,8 @@ func openJitsiMeet() {
     //jitsiMeetView.alpha = 0
     pipViewCoordinator?.show()
 //as soon as start meet open in pip mode
-enterPicture(inPicture: [:])
+// enterPicture(inPicture: [:])
+    pipViewCoordinator?.enterPictureInPicture()
 }
 
 func closeJitsiMeeting(){
