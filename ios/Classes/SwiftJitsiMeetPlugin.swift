@@ -2,6 +2,22 @@ import Flutter
 import UIKit
 import JitsiMeetSDK
 
+extension UIApplication {
+    class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        return base
+    }
+}
+
 public class SwiftJitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler {
     var window: UIWindow?
 
@@ -102,7 +118,18 @@ public class SwiftJitsiMeetPlugin: NSObject, FlutterPlugin, FlutterStreamHandler
             navigationController.setNavigationBarHidden(true, animated: false)
             navigationController.modalPresentationStyle = .fullScreen
             navigationController.navigationBar.barTintColor = UIColor.black
-            self.uiVC.present(navigationController, animated: true)
+            // self.uiVC.present(navigationController, animated: true)
+
+            //AMOL new code
+            if let topVC = UIApplication.getTopViewController() {
+
+                navigationController.modalPresentationStyle = .fullScreen
+
+            topVC.addChild(navigationController)
+                navigationController.view.frame = CGRect(x: 0, y: 0, width: topVC.view.frame.width, height: topVC.view.frame.height)
+                topVC.view.addSubview(navigationController.view)
+                navigationController.didMove(toParent: topVC)
+            }
             result(nil)
 
         }else if (call.method == "closeMeeting") {
