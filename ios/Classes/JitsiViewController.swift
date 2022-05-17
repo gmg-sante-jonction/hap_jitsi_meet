@@ -90,6 +90,7 @@ class JitsiViewController: UIViewController {
         // animate in
         jitsiMeetView.alpha = 0
         pipViewCoordinator?.show()
+        pipViewCoordinator?.enterPictureInPicture()
     }
     
     func closeJitsiMeeting(){
