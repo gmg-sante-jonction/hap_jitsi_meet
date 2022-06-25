@@ -29,7 +29,7 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
     // The EventChannel for broadcasting JitsiMeetEvents to Flutter
     private lateinit var eventChannel: EventChannel
 
-    private var activity: Activity? = null
+    private var activity: Activity = null
 
     constructor(activity: Activity) : this() {
         this.activity = activity
