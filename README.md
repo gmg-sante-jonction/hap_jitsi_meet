@@ -9,6 +9,8 @@ Jitsi Meet Plugin for Flutter. Supports Android, iOS, and Web platforms.
 
 Find more information about Jitsi Meet [here](https://github.com/jitsi/jitsi-meet)
 
+
+
 ## Table of Contents
   - [Configuration](#configuration)
     - [IOS](#ios)
