@@ -29,7 +29,7 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
     // The EventChannel for broadcasting JitsiMeetEvents to Flutter
     private lateinit var eventChannel: EventChannel
 
-    private var activity: Activity
+    private var activity: Activity? = null
 
     constructor(activity: Activity) : this() {
         this.activity = activity
@@ -63,7 +63,7 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar) {
-            val plugin = JitsiMeetPlugin(registrar.activity())
+            val plugin = JitsiMeetPlugin(registrar.activity()!!)
             val channel = MethodChannel(registrar.messenger(), JITSI_METHOD_CHANNEL)
             channel.setMethodCallHandler(plugin)
 
