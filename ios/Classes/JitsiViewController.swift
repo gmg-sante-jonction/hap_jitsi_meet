@@ -7,7 +7,7 @@ class JitsiViewController: UIViewController {
 @IBOutlet weak var videoButton: UIButton?
 
 //CHEAT
-fileprivate var pipViewCoordinator: PiPViewCoordinator
+fileprivate var pipViewCoordinator: PiPViewCoordinator?
 fileprivate var jitsiMeetView: JitsiMeetView?
 
 var eventSink:FlutterEventSink? = nil
