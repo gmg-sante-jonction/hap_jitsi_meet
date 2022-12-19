@@ -44,7 +44,7 @@ class JitsiMeetEventStreamHandler private constructor(): EventChannel.StreamHand
     }
 
     fun onPictureInPictureWillEnter() {
-        Log.d(JITSI_PLUGIN_TAG, "davidJitsiMeetEventStreamHandler.onPictureInPictureWillEnter")
+        Log.d(JITSI_PLUGIN_TAG, "JitsiMeetEventStreamHandler.onPictureInPictureWillEnter")
         var data : HashMap<String, String>
                 = HashMap<String, String> ()
         data?.put("event", "onPictureInPictureWillEnter")
@@ -52,7 +52,7 @@ class JitsiMeetEventStreamHandler private constructor(): EventChannel.StreamHand
     }
 
     fun onPictureInPictureTerminated() {
-        Log.d(JITSI_PLUGIN_TAG, "davidJitsiMeetEventStreamHandler.onPictureInPictureTerminated")
+        Log.d(JITSI_PLUGIN_TAG, "JitsiMeetEventStreamHandler.onPictureInPictureTerminated")
         var data : HashMap<String, String>
                 = HashMap<String, String> ()
         data?.put("event", "onPictureInPictureTerminated")
