@@ -5,6 +5,7 @@
             android:name=".JitsiMeetPluginActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"
             android:launchMode="singleTask"
+            android:exported="true"
             android:resizeableActivity="true"
             android:supportsPictureInPicture="true"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
