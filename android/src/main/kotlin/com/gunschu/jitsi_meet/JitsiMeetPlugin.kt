@@ -76,7 +76,9 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
         const val JITSI_METHOD_CHANNEL = "jitsi_meet"
         const val JITSI_EVENT_CHANNEL = "jitsi_meet_events"
         const val JITSI_MEETING_CLOSE = "JITSI_MEETING_CLOSE"
+        const val TOGGLE_SCREEN_SHARE = "com.gunschu.jitsi_meet.TOGGLE_SCREEN_SHARE"
     }
+
 
     /**
      * MethodCallHandler interface implementations
@@ -91,6 +93,9 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
             }
             "closeMeeting" -> {
                 closeMeeting(call, result)
+            }
+            "toggleShareScreen" -> {
+                toggleShareScreen(call, result)
             }
             else -> result.notImplemented()
         }
@@ -160,6 +165,13 @@ public class JitsiMeetPlugin() : FlutterPlugin, MethodCallHandler, ActivityAware
 
     private fun closeMeeting(call: MethodCall, result: Result) {
         val intent = Intent(JITSI_MEETING_CLOSE)
+        activity?.sendBroadcast(intent)
+        result.success(null)
+    }
+
+    private fun toggleShareScreen(call: MethodCall, result: Result) {
+        val intent = Intent(TOGGLE_SCREEN_SHARE)
+        intent.putExtra("enabled", true)
         activity?.sendBroadcast(intent)
         result.success(null)
     }
